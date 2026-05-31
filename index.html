@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:white;
+}
+
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:350px;
+    backdrop-filter:blur(10px);
+}
+
+input{
+    width:90%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#ff4081;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#surprise{
+    display:none;
+}
+
+#error{
+    color:yellow;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="login">
+
+    <h2>❤️ Birthday Surprise ❤️</h2>
+    <p>Enter your details to unlock your surprise</p>
+
+    <input type="text" id="number" placeholder="Phone Number">
+    <input type="date" id="dob">
+
+    <br>
+    <button onclick="checkLogin()">Unlock ❤️</button>
+
+    <p id="error"></p>
+
+</div>
+
+<div class="container" id="surprise">
+
+    <h1>🎂 Happy Birthday My Love ❤️</h1>
+
+    <p>
+        You are the most beautiful part of my life.
+        Today is your special day and I want to make it memorable.
+    </p>
+
+    <button onclick="showMessage()">Click Here ❤️</button>
+
+    <div id="message" style="display:none;">
+        <h2>I Am Sorry 😔</h2>
+
+        <p>
+            I know I made mistakes and hurt you.
+            I never meant to.
+        </p>
+
+        <p>
+            Thank you for always being there.
+            Happy Birthday ❤️
+            I Love You ❤️
+            Please Forgive Me 🌹
+        </p>
+    </div>
+
+</div>
+
+<script>
+
+// CHANGE THESE VALUES
+const correctNumber = "8667866257";
+const correctDOB = "2005-06-01";
+
+function checkLogin(){
+
+    let number = document.getElementById("number").value;
+    let dob = document.getElementById("dob").value;
+
+    if(number === correctNumber && dob === correctDOB){
+
+        document.getElementById("login").style.display="none";
+        document.getElementById("surprise").style.display="block";
+
+    }else{
+
+        document.getElementById("error").innerHTML =
+        "Oops! Wrong details ❤️";
+    }
+}
+
+function showMessage(){
+    document.getElementById("message").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
