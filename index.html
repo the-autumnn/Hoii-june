@@ -1,16 +1,42 @@
-```css
-body{
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoiii Junee 🤎</title>
+
+<style>
+
+*{
     margin:0;
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
-    background-size:400% 400%;
-    animation:gradient 10s ease infinite;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
     color:white;
     overflow:hidden;
+    transition:0.5s;
+}
+
+/* NIGHT MODE DEFAULT */
+body.dark{
+    background:linear-gradient(-45deg,#0f172a,#1e293b,#312e81,#581c87);
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
+}
+
+/* LIGHT MODE */
+body.light{
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
 }
 
 @keyframes gradient{
@@ -20,20 +46,24 @@ body{
 }
 
 .container{
-    background:rgba(255,255,255,0.18);
+    background:rgba(255,255,255,0.12);
     backdrop-filter:blur(15px);
     padding:35px;
     border-radius:25px;
     text-align:center;
     width:380px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,0.3);
     animation:fadeIn 1s ease;
+}
+
+body.dark .container{
+    box-shadow:0 0 30px rgba(255,105,180,0.5);
 }
 
 @keyframes fadeIn{
     from{
         opacity:0;
-        transform:translateY(30px);
+        transform:translateY(20px);
     }
     to{
         opacity:1;
@@ -42,26 +72,29 @@ body{
 }
 
 h1{
-    font-size:32px;
     margin-bottom:15px;
 }
 
 h2{
-    font-size:28px;
+    margin-bottom:10px;
+}
+
+p{
+    margin-bottom:15px;
+    line-height:1.6;
 }
 
 input{
     width:90%;
-    padding:14px;
+    padding:12px;
     margin:10px 0;
     border:none;
-    border-radius:12px;
+    border-radius:10px;
     outline:none;
-    font-size:15px;
 }
 
 button{
-    padding:14px 28px;
+    padding:12px 25px;
     border:none;
     border-radius:30px;
     background:#ff4081;
@@ -73,12 +106,18 @@ button{
 
 button:hover{
     transform:scale(1.08);
-    box-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+#themeToggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1000;
 }
 
 #error{
     color:#fff176;
-    font-weight:bold;
+    margin-top:10px;
 }
 
 #surprise{
@@ -87,9 +126,11 @@ button:hover{
 
 #message{
     display:none;
+    margin-top:20px;
     animation:fadeIn 1s ease;
 }
 
+/* Floating Hearts */
 .hearts{
     position:absolute;
     width:100%;
@@ -103,15 +144,15 @@ button:hover{
 .hearts span{
     position:absolute;
     bottom:-50px;
-    font-size:24px;
-    animation:float 8s linear infinite;
+    font-size:25px;
+    animation:float 10s linear infinite;
 }
 
 .hearts span:nth-child(1){left:10%;}
-.hearts span:nth-child(2){left:30%;animation-duration:10s;}
-.hearts span:nth-child(3){left:50%;animation-duration:7s;}
-.hearts span:nth-child(4){left:70%;animation-duration:9s;}
-.hearts span:nth-child(5){left:90%;animation-duration:11s;}
+.hearts span:nth-child(2){left:25%;animation-duration:8s;}
+.hearts span:nth-child(3){left:45%;animation-duration:12s;}
+.hearts span:nth-child(4){left:65%;animation-duration:9s;}
+.hearts span:nth-child(5){left:85%;animation-duration:11s;}
 
 @keyframes float{
     0%{
@@ -123,4 +164,124 @@ button:hover{
         opacity:0;
     }
 }
+
+</style>
+</head>
+
+<body class="dark">
+
+<div class="hearts">
+    <span>❤️</span>
+    <span>🤎</span>
+    <span>🧸</span>
+    <span>🌹</span>
+    <span>❤️</span>
+</div>
+
+<button id="themeToggle" onclick="toggleTheme()">
+☀️ Light Mode
+</button>
+
+<div class="container" id="login">
+
+    <h2>HeHeHe 🤎</h2>
+    <p>Happpiee BirthDay 🎂</p>
+
+    <input type="text" id="number" placeholder="Phone Number">
+    <input type="date" id="dob">
+
+    <br>
+
+    <button onclick="checkLogin()">Unlock ❤️</button>
+
+    <p id="error"></p>
+
+</div>
+
+<div class="container" id="surprise">
+
+    <h1>🎂 Happy Birthday Abieee 🧸</h1>
+
+    <p>
+        Wishing you a day filled with happiness and a remaining life filled with joy.
+        You deserve the best! 🤎
+    </p>
+
+    <button onclick="showMessage()">Open My Heart 🤎</button>
+
+    <div id="message">
+
+        <h2>I Am Sorry 😔</h2>
+
+        <p>
+            I know I made mistakes and hurt you.
+            I never meant to.
+        </p>
+
+        <p>
+            Thank you for always being there.
+            Happy Birthday ❤️
+            Please Forgive Me 🌹
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+// LOGIN DETAILS
+const correctNumber = "8667866257";
+const correctDOB = "2005-06-01";
+
+function checkLogin(){
+
+    let number = document.getElementById("number").value;
+    let dob = document.getElementById("dob").value;
+
+    if(number === correctNumber && dob === correctDOB){
+
+        document.getElementById("login").style.display = "none";
+        document.getElementById("surprise").style.display = "block";
+
+    }else{
+
+        document.getElementById("error").innerHTML =
+        "Oops! Wrong details ❤️";
+
+    }
+}
+
+function showMessage(){
+
+    document.getElementById("message").style.display = "block";
+
+}
+
+function toggleTheme(){
+
+    if(document.body.classList.contains("dark")){
+
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+
+        document.getElementById("themeToggle").innerHTML =
+        "🌙 Night Mode";
+
+    }else{
+
+        document.body.classList.remove("light");
+        document.body.classList.add("dark");
+
+        document.getElementById("themeToggle").innerHTML =
+        "☀️ Light Mode";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
 ```
