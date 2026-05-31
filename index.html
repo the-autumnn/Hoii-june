@@ -1,131 +1,126 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Hoiii Junee🤎</title>
-
-<style>
+```css
 body{
     margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
+    background-size:400% 400%;
+    animation:gradient 10s ease infinite;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    min-height:100vh;
     color:white;
+    overflow:hidden;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
 .container{
-    background:rgba(255,255,255,0.15);
-    padding:30px;
-    border-radius:20px;
+    background:rgba(255,255,255,0.18);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    border-radius:25px;
     text-align:center;
-    width:350px;
-    backdrop-filter:blur(10px);
+    width:380px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+h2{
+    font-size:28px;
 }
 
 input{
     width:90%;
-    padding:12px;
+    padding:14px;
     margin:10px 0;
     border:none;
-    border-radius:10px;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
 }
 
 button{
-    padding:12px 25px;
+    padding:14px 28px;
     border:none;
-    border-radius:10px;
+    border-radius:30px;
     background:#ff4081;
     color:white;
     cursor:pointer;
     font-size:16px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+#error{
+    color:#fff176;
+    font-weight:bold;
 }
 
 #surprise{
     display:none;
 }
 
-#error{
-    color:yellow;
+#message{
+    display:none;
+    animation:fadeIn 1s ease;
 }
-</style>
-</head>
 
-<body>
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
 
-<div class="container" id="login">
+.hearts span{
+    position:absolute;
+    bottom:-50px;
+    font-size:24px;
+    animation:float 8s linear infinite;
+}
 
-    <h2>HeHeHe🤎</h2>
-    <p>Happpiee BirthDay</p>
+.hearts span:nth-child(1){left:10%;}
+.hearts span:nth-child(2){left:30%;animation-duration:10s;}
+.hearts span:nth-child(3){left:50%;animation-duration:7s;}
+.hearts span:nth-child(4){left:70%;animation-duration:9s;}
+.hearts span:nth-child(5){left:90%;animation-duration:11s;}
 
-    <input type="text" id="number" placeholder="Phone Number">
-    <input type="date" id="dob">
-
-    <br>
-    <button onclick="checkLogin()">Unlock ❤️</button>
-
-    <p id="error"></p>
-
-</div>
-
-<div class="container" id="surprise">
-
-    <h1> Happy Birthday Abieee🧸 </h1>
-
-    <p>
-       Wishing you a day filled with happiness and a remaining life filled with joy. You deserve the best!
-    </p>
-
-    <button onclick="showMessage()">Click Here🫴</button>
-
-    <div id="message" style="display:none;">
-        <h2>I Am Sorry 😔</h2>
-
-        <p>
-            I know I made mistakes and hurt you.
-            I never meant to.
-        </p>
-
-        <p>
-            Thank you for always being there.
-            Happy Birthday ❤️
-            Please Forgive Me 🌹
-        </p>
-    </div>
-
-</div>
-
-<script>
-
-// CHANGE THESE VALUES
-const correctNumber = "8667866257";
-const correctDOB = "2005-06-01";
-
-function checkLogin(){
-
-    let number = document.getElementById("number").value;
-    let dob = document.getElementById("dob").value;
-
-    if(number === correctNumber && dob === correctDOB){
-
-        document.getElementById("login").style.display="none";
-        document.getElementById("surprise").style.display="block";
-
-    }else{
-
-        document.getElementById("error").innerHTML =
-        "Oops! Wrong details ❤️";
+@keyframes float{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120vh);
+        opacity:0;
     }
 }
-
-function showMessage(){
-    document.getElementById("message").style.display="block";
-}
-
-</script>
-
-</body>
-</html>
+```
