@@ -1,63 +1,180 @@
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hoiii Junee 🤎</title>
+<title>Hoiii Junee🤎</title>
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
     color:white;
     overflow:hidden;
-    transition:0.5s;
 }
 
-/* NIGHT MODE DEFAULT */
-body.dark{
-    background:linear-gradient(-45deg,#0f172a,#1e293b,#312e81,#581c87);
-    background-size:400% 400%;
-    animation:gradient 12s ease infinite;
+/* Floating Teddy & Monkey Emojis */
+
+.floating-emojis{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
 }
 
-/* LIGHT MODE */
-body.light{
-    background:linear-gradient(-45deg,#ff758c,#ff7eb3,#ff9a9e,#fad0c4);
-    background-size:400% 400%;
-    animation:gradient 12s ease infinite;
+.floating-emojis span{
+    position:absolute;
+    bottom:-100px;
+    font-size:40px;
+    animation:floatUp linear infinite;
 }
 
-@keyframes gradient{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+.floating-emojis span:nth-child(1){
+    left:5%;
+    animation-duration:8s;
 }
+
+.floating-emojis span:nth-child(2){
+    left:20%;
+    animation-duration:12s;
+}
+
+.floating-emojis span:nth-child(3){
+    left:35%;
+    animation-duration:10s;
+}
+
+.floating-emojis span:nth-child(4){
+    left:50%;
+    animation-duration:7s;
+}
+
+.floating-emojis span:nth-child(5){
+    left:65%;
+    animation-duration:11s;
+}
+
+.floating-emojis span:nth-child(6){
+    left:80%;
+    animation-duration:9s;
+}
+
+.floating-emojis span:nth-child(7){
+    left:90%;
+    animation-duration:13s;
+}
+
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Glass Card */
 
 .container{
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(15px);
-    padding:35px;
-    border-radius:25px;
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
     text-align:center;
-    width:380px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.3);
-    animation:fadeIn 1s ease;
+    width:350px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 25px rgba(255,255,255,0.3);
+    z-index:10;
 }
 
-body.dark .container{
-    box-shadow:0 0 30px rgba(255,105,180,0.5);
+/* Inputs */
+
+input{
+    width:90%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+/* Buttons */
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4081;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px white;
+}
+
+/* Hidden Surprise */
+
+#surprise{
+    display:none;
+}
+
+#error{
+    color:yellow;
+    margin-top:10px;
+}
+
+/* Glow Heading */
+
+.glow{
+    text-shadow:
+    0 0 10px #fff,
+    0 0 20px #ff69b4,
+    0 0 30px #ff69b4;
+}
+
+/* Waving Emoji */
+
+.wave{
+    display:inline-block;
+    animation:wave 2s infinite;
+    transform-origin:70% 70%;
+}
+
+@keyframes wave{
+    0%{transform:rotate(0deg);}
+    15%{transform:rotate(14deg);}
+    30%{transform:rotate(-8deg);}
+    40%{transform:rotate(14deg);}
+    50%{transform:rotate(-4deg);}
+    60%{transform:rotate(10deg);}
+    100%{transform:rotate(0deg);}
+}
+
+#message{
+    display:none;
+    margin-top:20px;
+    animation:fadeIn 1s ease;
 }
 
 @keyframes fadeIn{
@@ -71,143 +188,64 @@ body.dark .container{
     }
 }
 
-h1{
-    margin-bottom:15px;
-}
-
-h2{
-    margin-bottom:10px;
-}
-
-p{
-    margin-bottom:15px;
-    line-height:1.6;
-}
-
-input{
-    width:90%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:10px;
-    outline:none;
-}
-
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:30px;
-    background:#ff4081;
-    color:white;
-    cursor:pointer;
-    font-size:16px;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.08);
-}
-
-#themeToggle{
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:1000;
-}
-
-#error{
-    color:#fff176;
-    margin-top:10px;
-}
-
-#surprise{
-    display:none;
-}
-
-#message{
-    display:none;
-    margin-top:20px;
-    animation:fadeIn 1s ease;
-}
-
-/* Floating Hearts */
-.hearts{
-    position:absolute;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    top:0;
-    left:0;
-    pointer-events:none;
-}
-
-.hearts span{
-    position:absolute;
-    bottom:-50px;
-    font-size:25px;
-    animation:float 10s linear infinite;
-}
-
-.hearts span:nth-child(1){left:10%;}
-.hearts span:nth-child(2){left:25%;animation-duration:8s;}
-.hearts span:nth-child(3){left:45%;animation-duration:12s;}
-.hearts span:nth-child(4){left:65%;animation-duration:9s;}
-.hearts span:nth-child(5){left:85%;animation-duration:11s;}
-
-@keyframes float{
-    0%{
-        transform:translateY(0);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-120vh);
-        opacity:0;
-    }
-}
-
 </style>
 </head>
 
-<body class="dark">
+<body>
 
-<div class="hearts">
-    <span>❤️</span>
-    <span>🤎</span>
+<!-- Floating Teddy & Monkey -->
+
+<div class="floating-emojis">
     <span>🧸</span>
-    <span>🌹</span>
-    <span>❤️</span>
+    <span>🐵</span>
+    <span>🧸</span>
+    <span>🐵</span>
+    <span>🧸</span>
+    <span>🐵</span>
+    <span>🧸</span>
 </div>
 
-<button id="themeToggle" onclick="toggleTheme()">
-☀️ Light Mode
-</button>
+<!-- Login Page -->
 
 <div class="container" id="login">
 
-    <h2>HeHeHe 🤎</h2>
+    <h2>
+        Hoiii Juneee 🤎
+        <span class="wave">🧸</span>
+    </h2>
+
     <p>Happpiee BirthDay 🎂</p>
 
     <input type="text" id="number" placeholder="Phone Number">
+
     <input type="date" id="dob">
 
     <br>
 
-    <button onclick="checkLogin()">Unlock ❤️</button>
+    <button onclick="checkLogin()">
+        Unlock ❤️
+    </button>
 
     <p id="error"></p>
 
 </div>
 
+<!-- Surprise Page -->
+
 <div class="container" id="surprise">
 
-    <h1>🎂 Happy Birthday Abieee 🧸</h1>
+    <h1 class="glow">
+        🎂 Happy Birthday Abieee 🧸 🎂
+    </h1>
 
     <p>
         Wishing you a day filled with happiness and a remaining life filled with joy.
         You deserve the best! 🤎
     </p>
 
-    <button onclick="showMessage()">Open My Heart 🤎</button>
+    <button onclick="showMessage()">
+        Click Here 🫴
+    </button>
 
     <div id="message">
 
@@ -230,7 +268,8 @@ button:hover{
 
 <script>
 
-// LOGIN DETAILS
+// CHANGE THESE VALUES
+
 const correctNumber = "8667866257";
 const correctDOB = "2005-06-01";
 
@@ -255,28 +294,6 @@ function checkLogin(){
 function showMessage(){
 
     document.getElementById("message").style.display = "block";
-
-}
-
-function toggleTheme(){
-
-    if(document.body.classList.contains("dark")){
-
-        document.body.classList.remove("dark");
-        document.body.classList.add("light");
-
-        document.getElementById("themeToggle").innerHTML =
-        "🌙 Night Mode";
-
-    }else{
-
-        document.body.classList.remove("light");
-        document.body.classList.add("dark");
-
-        document.getElementById("themeToggle").innerHTML =
-        "☀️ Light Mode";
-
-    }
 
 }
 
